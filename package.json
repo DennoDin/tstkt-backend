@@ -1,0 +1,27 @@
+{
+    "name": "tstkt-backend",
+    "version": "1.0.0",
+    "description": "Backend for tstkt service",
+    "main": "cheese.js",
+    "dependencies": {
+        "express": "^4.17.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.7"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node cheese.js",
+        "dev": "nodemon cheese.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/DennoDin/tstkt-backend.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/DennoDin/tstkt-backend/issues"
+    },
+    "homepage": "https://github.com/DennoDin/tstkt-backend#readme"
+}
