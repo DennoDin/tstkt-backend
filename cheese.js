@@ -1,4 +1,6 @@
 const express = require("express");
+require('dotenv').config();
+const {PORT} = process.env;
 
 const app = express();
 
@@ -6,6 +8,6 @@ app.get('/', (req, res) => {
     res.send("Sup Bruh");
 });
 
-app.listen(3000, () => {
-    console.log("app listening on http://localhost:3000")
+app.listen(PORT, () => {
+    console.log(`app listening on http://localhost:${PORT}`)
 });
