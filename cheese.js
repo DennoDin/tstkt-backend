@@ -1,5 +1,6 @@
 const express = require("express");
 require('dotenv').config();
+const { getAppAccessToken } = require("./src/appAccessToken");
 const {PORT} = process.env || 9999;
 
 const app = express();
@@ -14,9 +15,14 @@ app.get('/api', (req, res) => {
 });
 
 app.post('/auth', (req, res) => {
+    const appAccessToken = getAppAccessToken();
+    res.send(appAccessToken);
+})
+
+app.post('/subscribe/callback', (req, res) => {
     // TODO: Verify signature
     // req.get('Twitch-Eventsub-Message-Signature');
-
+    console.log("POST/auth triggered!: ", req.body)
     res.send(req.body.challenge);
 })
 
