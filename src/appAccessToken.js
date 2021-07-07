@@ -9,20 +9,21 @@ async function getAppAccessToken(){
     const client_secret = process.env.CLIENT_SECRET;
     const params = new url.URLSearchParams({client_id, client_secret, grant_type, scope});
     
-    let result;
-    
+    let access_token;
+
     try {
-        result = await axios.post(
+        const result = await axios.post(
             "https://id.twitch.tv/oauth2/token", 
             params.toString(), 
             (res) => console.log(res)
         );
+        access_token = result.data.access_token;
     
     } catch (error) {
         return "noaccess"
     }
 
-    return result.data.access_token;
+    return access_token;
 }
 
 module.exports = { getAppAccessToken }
