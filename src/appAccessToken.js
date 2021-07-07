@@ -16,13 +16,13 @@ async function getAppAccessToken(){
             "https://id.twitch.tv/oauth2/token", 
             params.toString(), 
             (res) => console.log(res)
-        )
+        );
     
     } catch (error) {
-    
+        return "noaccess"
     }
 
-    return "appAccessToken"
+    return result.data.access_token;
 }
 
 module.exports = { getAppAccessToken }
