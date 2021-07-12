@@ -30,7 +30,21 @@ app.post('/auth', async (req, res) => {
 app.post('/eventsubs', async (req, res) => {
     const result = await eventSub.create(appAccessToken, "channel.follow");
     res.sendStatus(201);
-})
+});
+
+app.delete('/eventsubs/:id', async (req, res) => {
+    const id = req.params.id;
+    if(id === undefined) {
+        res.sendStatus(400);
+    } else {
+        const result = await eventSub.remove(appAccessToken, id);
+        if(result === "REMOOOVED!"){
+            res.sendStatus(200);
+        } else {
+            res.sendStatus(400);
+        }
+    }
+});
 
 app.post('/eventsubs/callback', (req, res) => {
     // TODO: Verify signature

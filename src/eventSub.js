@@ -42,5 +42,28 @@ function create(appAccessToken, eventSubType){
     return "CREATE!";
 };
 
+async function remove(appAccessToken, eventSubId){
+    const headers = {
+        'Client-ID': process.env.CLIENT_ID,
+        Authorization: `Bearer ${appAccessToken}`,
+    }
 
-module.exports = { create }
+    const options = {
+        method: 'DELETE',
+        url: 'https://api.twitch.tv/helix/eventsub/subscriptions',
+        params: {id: eventSubId},
+        headers,
+    };
+
+    try {
+        const result = await axios.request(options);
+        console.log("RESULT: ", result)
+    } catch (error) {
+        console.log(error);
+        console.log("Remove EventSub Failed :-(")
+    }
+
+    return "REMOOOVED!"
+}
+
+module.exports = { create, remove }
