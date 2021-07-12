@@ -1,6 +1,7 @@
 const express = require("express");
 require('dotenv').config();
 const { getAppAccessToken } = require("./src/appAccessToken");
+const eventSub = require('./src/eventSub')
 const {PORT} = process.env || 9999;
 let appAccessToken;
 
@@ -25,7 +26,13 @@ app.post('/auth', async (req, res) => {
     }
 })
 
-app.post('/subscribe/callback', (req, res) => {
+// TODO: accept parameters for type of eventsub
+app.post('/eventsubs', async (req, res) => {
+    const result = await eventSub.create(appAccessToken, "channel.follow");
+    res.sendStatus(201);
+})
+
+app.post('/eventsubs/callback', (req, res) => {
     // TODO: Verify signature
     // req.get('Twitch-Eventsub-Message-Signature');
     console.log("POST/auth triggered!: ", req.body)
